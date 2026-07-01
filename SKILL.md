@@ -1,5 +1,5 @@
 ---
-name: storm-recherche
+name: storm-research
 description: À utiliser quand on demande de lancer une Storm Recherche, d'utiliser le skill storm-recherche, d'appliquer la méthode STORM à un sujet, dit "storm recherche sur X" / "briefing STORM sur X" / "recherche multi-angles sur X", ou veut un briefing HTML multi-perspectives, sourcé et vérifié. Déroule un pipeline en 4 phases : cinq angles experts (Praticien, Académique, Sceptique, Économiste, Historien) -> carte des contradictions -> rapport HTML synthétisé -> peer review adversarial + vérification contre sources primaires. Idéal pour les sujets où plusieurs points de vue et des faits vérifiés comptent ; surdimensionné pour une simple recherche factuelle.
 argument-hint: "[sujet à rechercher]"
 ---
