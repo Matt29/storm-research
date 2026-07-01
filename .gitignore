@@ -1,0 +1,10 @@
+# Generated Storm Recherche reports
+storm-reports/
+**/storm-reports/
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/

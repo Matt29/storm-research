@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<!--
+  STORM RECHERCHE — MODÈLE DE RAPPORT (charte IA IRL)
+  Clone ce fichier, remplis chaque {{TOKEN}}, supprime les commentaires d'instruction,
+  répète les blocs répétables (cartes d'enseignement, références, actions) autant que besoin.
+  Garde le bloc <style> tel quel. Charte : navy #0D1B2A, orange #F47C2B, cream #F5F5F0, Inter.
+  Ne change pas de style visuel.
+-->
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Storm Recherche : {{TOPIC_TITLE}}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --navy: #0D1B2A; --navy-2: #16283d; --orange: #F47C2B; --orange-dark: #d9640f;
+    --cream: #F5F5F0; --ink: #0D1B2A; --muted: #5b6677; --line: #e4e2da;
+    --green: #15803d; --green-bg: #e9f6ee; --amber: #b45309; --amber-bg: #fdf3e7;
+    --red: #b91c1c; --red-bg: #fdecec;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: var(--ink); background: #e8e8e1; line-height: 1.62; font-weight: 400; -webkit-font-smoothing: antialiased; }
+  .page { max-width: 900px; margin: 0 auto; background: #fff; box-shadow: 0 1px 40px rgba(13,27,42,0.10); }
+
+  /* ---- Cover / header, full navy (convention IA IRL) ---- */
+  header { background: var(--navy); color: var(--cream); padding: 60px 72px 44px; }
+  .eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0.20em; text-transform: uppercase; color: var(--orange); margin-bottom: 16px; }
+  header h1 { font-family: 'Inter', sans-serif; font-weight: 900; font-size: 42px; line-height: 1.08; letter-spacing: -0.025em; color: #fff; margin-bottom: 18px; }
+  .lede { font-size: 16.5px; color: #c7cfda; max-width: 660px; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 10px 26px; margin-top: 26px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,0.16); font-size: 12px; letter-spacing: 0.02em; color: #9fb0c4; }
+  .meta-row b { color: #fff; font-weight: 700; }
+  .verify-banner { margin-top: 22px; background: rgba(244,124,43,0.12); border: 1px solid rgba(244,124,43,0.5); border-radius: 8px; padding: 13px 18px; font-size: 13px; color: #f6ddc7; display: flex; gap: 11px; align-items: baseline; }
+  .verify-banner b { font-weight: 700; color: #fff; }
+  .verify-banner .tag { font-size: 10px; font-weight: 700; letter-spacing: 0.10em; text-transform: uppercase; background: var(--orange); color: #fff; padding: 3px 9px; border-radius: 4px; flex-shrink: 0; }
+  .howto { margin: 34px 72px 0; border: 1px solid var(--line); border-radius: 8px; padding: 18px 22px; background: var(--cream); }
+  .howto h4 { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+  .howto ul { list-style: none; }
+  .howto li { font-size: 13.5px; color: #2b3950; margin-bottom: 7px; padding-left: 16px; position: relative; }
+  .howto li::before { content: "›"; position: absolute; left: 0; color: var(--orange); font-weight: 800; }
+  .howto b { font-weight: 700; color: var(--ink); }
+
+  .body-wrap { padding: 12px 72px 80px; }
+  .section { margin-top: 52px; }
+  .section-num { font-size: 13px; font-weight: 700; color: var(--orange); letter-spacing: 0.05em; }
+  h2 { font-family: 'Inter', sans-serif; font-weight: 800; font-size: 25px; letter-spacing: -0.015em; color: var(--ink); margin: 6px 0 18px; line-height: 1.2; }
+  h2 .bar { display: inline-block; width: 38px; height: 4px; background: var(--orange); border-radius: 2px; vertical-align: middle; margin-right: 14px; }
+  p { margin-bottom: 14px; }
+  p.body-lg { font-size: 16.5px; }
+  .ceo { background: var(--cream); border-left: 5px solid var(--orange); padding: 26px 30px; border-radius: 4px; font-size: 16.5px; }
+  .ceo strong { font-weight: 800; color: var(--navy); }
+
+  .finding { border: 1px solid var(--line); border-radius: 10px; padding: 24px 26px; margin-bottom: 18px; position: relative; }
+  .finding-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; margin-bottom: 12px; }
+  .finding-title { font-family: 'Inter', sans-serif; font-weight: 800; font-size: 18px; line-height: 1.3; color: var(--ink); flex: 1; }
+  .finding-rank { font-weight: 800; font-size: 13px; color: #fff; background: var(--navy); width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .finding p { font-size: 15px; color: #283449; margin-bottom: 14px; }
+  .rel-row { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
+  .rel { display: inline-flex; align-items: center; gap: 9px; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 5px 12px; border-radius: 20px; }
+  .rel.high { background: rgba(244,124,43,0.14); color: var(--orange-dark); }
+  .rel.medhigh { background: var(--green-bg); color: var(--green); }
+  .rel.medium { background: var(--amber-bg); color: var(--amber); }
+  .rel.low { background: var(--red-bg); color: var(--red); }
+  .score { font-size: 13px; font-weight: 600; color: var(--ink); }
+  .score b { font-size: 17px; }
+  .score span { color: var(--muted); font-weight: 400; }
+  .chips { display: flex; flex-direction: column; gap: 8px; margin-top: 6px; }
+  .chip-row { display: flex; align-items: baseline; gap: 9px; flex-wrap: wrap; font-size: 13.5px; }
+  .chip-label { font-size: 10.5px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; padding: 3px 8px; border-radius: 4px; white-space: nowrap; }
+  .chip-label.sup { background: var(--green-bg); color: var(--green); }
+  .chip-label.chal { background: var(--red-bg); color: var(--red); }
+  .chip-label.fix { background: var(--amber-bg); color: var(--amber); }
+  .chip-row span.who { color: #2b3950; }
+  .chip-row span.who b { font-weight: 700; }
+
+  .contested { border: 1px dashed var(--amber); background: #fffaf2; border-radius: 10px; padding: 22px 26px; margin-bottom: 18px; }
+  .contested .tag { font-size: 10.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--amber); }
+  .contested h4 { font-family: 'Inter', sans-serif; font-weight: 800; font-size: 16px; color: var(--ink); margin: 6px 0 10px; }
+  .contested p { font-size: 14px; color: #4a3a22; margin-bottom: 0; }
+
+  .connection { background: linear-gradient(135deg, #0D1B2A 0%, #1c3350 100%); color: #eaf0fb; border-radius: 12px; padding: 34px 38px; }
+  .connection h2 { color: #fff; }
+  .connection h2 .bar { background: var(--orange); }
+  .connection .section-num { color: var(--orange); }
+  .connection p { color: #d3def3; font-size: 16px; }
+  .connection .punch { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 18px; color: #fff; line-height: 1.4; margin-top: 18px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.18); }
+
+  .assume { border: 1px solid var(--line); border-left: 5px solid var(--amber); border-radius: 6px; padding: 24px 28px; background: #fffdf9; }
+  .assume h3 { font-family: 'Inter', sans-serif; font-size: 17px; font-weight: 800; color: var(--ink); margin-bottom: 10px; }
+  .assume p { font-size: 15px; color: #3a3320; }
+  .assume p:last-child { margin-bottom: 0; }
+
+  .action-item { display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+  .action-item:last-child { border-bottom: none; }
+  .action-mark { font-weight: 700; font-size: 13px; color: var(--orange); flex-shrink: 0; width: 34px; }
+  .action-item .do { font-weight: 700; color: var(--ink); }
+  .action-item p { font-size: 14.5px; margin-bottom: 0; color: #2b3950; }
+
+  .frontier { border: 2px dashed var(--orange); border-radius: 12px; padding: 30px 34px; background: var(--cream); }
+  .frontier .q { font-family: 'Inter', sans-serif; font-weight: 800; font-size: 22px; line-height: 1.32; color: var(--navy); margin-bottom: 16px; }
+  .frontier p { font-size: 15px; color: #2b3950; }
+
+  .oncam { margin-top: 18px; }
+  .oncam-col { border-radius: 10px; padding: 20px 24px; margin-bottom: 14px; }
+  .oncam-col.safe { background: var(--green-bg); border: 1px solid #bfe3cc; }
+  .oncam-col.caveat { background: var(--amber-bg); border: 1px solid #f0d9b5; }
+  .oncam-col.avoid { background: var(--red-bg); border: 1px solid #f3c9c9; }
+  .oncam-col h4 { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 12px; }
+  .oncam-col.safe h4 { color: var(--green); }
+  .oncam-col.caveat h4 { color: var(--amber); }
+  .oncam-col.avoid h4 { color: var(--red); }
+  .oncam-col ul { list-style: none; }
+  .oncam-col li { font-size: 14px; color: #233; margin-bottom: 8px; padding-left: 16px; position: relative; line-height: 1.5; }
+  .oncam-col li::before { content: "•"; position: absolute; left: 0; font-weight: 700; }
+  .oncam-col.safe li::before { color: var(--green); }
+  .oncam-col.caveat li::before { color: var(--amber); }
+  .oncam-col.avoid li::before { color: var(--red); }
+
+  .refs { margin-top: 52px; padding-top: 26px; border-top: 2px solid var(--line); }
+  .refs h3 { font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+  .refs ul { list-style: none; }
+  .refs li { font-size: 12.5px; color: var(--muted); margin-bottom: 11px; padding-left: 16px; position: relative; line-height: 1.5; }
+  .refs li::before { content: "›"; position: absolute; left: 0; color: var(--orange); font-weight: 800; }
+  .refs a { color: var(--orange-dark); text-decoration: none; }
+  .refs a:hover { text-decoration: underline; }
+  .refs .vstat { font-size: 10px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; padding: 2px 6px; border-radius: 3px; margin-right: 6px; }
+  .vstat.ok { background: var(--green-bg); color: var(--green); }
+  .vstat.part { background: var(--amber-bg); color: var(--amber); }
+  .vstat.weak { background: var(--red-bg); color: var(--red); }
+
+  .footer { margin: 40px 72px 0; padding: 24px 0 44px; font-size: 11px; color: #9aa6b8; text-align: center; }
+
+  @media (max-width: 640px) {
+    header { padding: 40px 24px 32px; } header h1 { font-size: 30px; }
+    .howto { margin: 24px 24px 0; } .body-wrap { padding: 12px 24px 56px; } .footer { margin: 32px 24px 0; }
+  }
+  @media print { body { background: #fff; } .page { box-shadow: none; max-width: 100%; } .connection, .oncam-col, header { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div class="eyebrow">Storm Recherche · v2 (vérifié)</div>
+    <h1>{{TOPIC_TITLE}}</h1>
+    <p class="lede">Une synthèse à cinq angles : praticien, académique, sceptique, économiste, historien. Chaque affirmation est vérifiée indépendamment contre sa source primaire avant publication.</p>
+    <div class="meta-row">
+      <span><b>Date</b> &nbsp;{{DATE}}</span>
+      <span><b>Méthode</b> &nbsp;5 angles experts construits maison + carte des contradictions</span>
+      <span><b>Lecteur</b> &nbsp;{{AUDIENCE: le rôle du lecteur ; supprime ce span si aucun rôle n'est donné}}</span>
+    </div>
+    <div class="verify-banner">
+      <span class="tag">Vérifié</span>
+      <span>Les {{N}} citations ont été vérifiées indépendamment contre leurs sources primaires le {{DATE}}. <b>Résultat : {{X}} inventée(s), {{Y}} corrigée(s), {{Z}} rétrogradée(s).</b> Les scores de confiance reflètent la qualité de preuve après vérification.</span>
+    </div>
+  </header>
+
+  <div class="howto">
+    <h4>Comment lire ce rapport</h4>
+    <ul>
+      <li><b>Le panel a été construit maison.</b> Les cinq angles partagent un même cadrage, donc là où ils sont d'accord, c'est une hypothèse forte, pas une preuve indépendante.</li>
+      <li><b>La confiance est notée sur 10</b> selon la qualité de preuve : travaux causaux évalués par les pairs &gt; données officielles ou financières &gt; sondage commandité unique &gt; analogie &gt; preprint.</li>
+      <li><b>Fait mesuré et interprétation sont signalés séparément.</b> Un score élevé veut dire que la donnée est solide, pas que la lecture stratégique est certaine.</li>
+    </ul>
+  </div>
+
+  <div class="body-wrap">
+
+  <!-- ============ 01 RÉSUMÉ 60 SECONDES ============ -->
+  <section class="section">
+    <div class="section-num">01</div>
+    <h2><span class="bar"></span>Le résumé en 60 secondes</h2>
+    <div class="ceo">
+      <p style="margin-bottom:0;">{{CEO_SUMMARY : un paragraphe dense pour un décideur qui a 60 secondes. Commence par le fait établi, puis l'interprétation contestée, puis la tension. Mets en gras la seule phrase la plus importante. De la nuance, pas un titre.}}</p>
+    </div>
+  </section>
+
+  <!-- ============ 02 ENSEIGNEMENTS CLÉS (classés par fiabilité, le plus fiable en premier) ============ -->
+  <section class="section">
+    <div class="section-num">02</div>
+    <h2><span class="bar"></span>Cinq enseignements clés, classés par fiabilité</h2>
+
+    <!-- RÉPÉTER ce bloc .finding 5x. Classe rel : high | medhigh | medium | low. Score 1-10. -->
+    <div class="finding">
+      <div class="finding-head">
+        <div class="finding-title">{{FINDING_TITLE}}</div>
+        <div class="finding-rank">{{N}}</div>
+      </div>
+      <div class="rel-row">
+        <div class="rel {{RELCLASS}}">Fiabilité : {{RELIABILITY_LABEL}}</div>
+        <div class="score"><b>{{SCORE}}</b><span>/10</span></div>
+      </div>
+      <p>{{FINDING_BODY : ce que ça dit, la preuve, et la réserve vérifiée qui plafonne le score. Mets en gras toute correction faite pendant la vérification.}}</p>
+      <div class="chips">
+        <div class="chip-row"><span class="chip-label sup">Soutenu par</span><span class="who">{{QUELS ANGLES + l'étude/source réelle}}</span></div>
+        <div class="chip-row"><span class="chip-label chal">Contesté par</span><span class="who">{{QUELS ANGLES ne sont pas d'accord, ou "Personne"}}</span></div>
+        <!-- ajoute une puce 'fix' quand la vérif a forcé une correction -->
+        <div class="chip-row"><span class="chip-label fix">Corrigé</span><span class="who">{{ce qui a changé après vérif source primaire ; supprime si rien n'a changé}}</span></div>
+      </div>
+    </div>
+
+    <!-- Encadré CLAIMS CONTESTÉS / RÉTROGRADÉS. Pour toute affirmation signalée contestée ou preprint. Supprime si aucune. -->
+    <div class="contested">
+      <div class="tag">Signal contesté · à surveiller, ne pas affirmer · confiance {{SCORE}}/10</div>
+      <h4>{{CLAIM_TITLE}}</h4>
+      <p>{{Pourquoi c'est contesté : la critique, la contre-preuve, la source. Dis au lecteur de ne pas l'énoncer comme un fait.}}</p>
+    </div>
+  </section>
+
+  <!-- ============ 03 LA CONNEXION CACHÉE ============ -->
+  <section class="section">
+    <div class="connection">
+      <div class="section-num">03</div>
+      <h2><span class="bar"></span>La connexion cachée</h2>
+      <p>{{Pose la contradiction apparente entre deux enseignements.}}</p>
+      <p>{{Résous-la : le lien non évident qui n'apparaît qu'en croisant les cinq angles.}}</p>
+      <p class="punch">{{La chute en une phrase. Si elle s'appuie sur un enseignement faible, dis-le entre parenthèses.}}</p>
+    </div>
+  </section>
+
+  <!-- ============ 03b HYPOTHÈSE / 6e ANGLE MANQUANT ============ -->
+  <section class="section">
+    <div class="assume">
+      <h3>L'hypothèse sur laquelle repose ce briefing (et le 6e angle manquant)</h3>
+      <p>{{Quelles variables les cinq angles ont figées. Nomme le 6e angle qui changerait les conclusions, pas seulement qui ajouterait de la nuance.}}</p>
+      <p>{{La seule omission qui pourrait inverser les conclusions. Construis en gardant cette réserve en tête.}}</p>
+    </div>
+  </section>
+
+  <!-- ============ 04 CE QU'IL FAUT VRAIMENT FAIRE ============ -->
+  <section class="section">
+    <div class="section-num">04</div>
+    <h2><span class="bar"></span>Ce qu'il faut vraiment faire différemment</h2>
+    <p class="body-lg" style="color:var(--muted);">{{Pour qui c'est + cadrage : des mouvements précis, pas des principes.}}</p>
+    <!-- RÉPÉTER 3-6 actions -->
+    <div class="action-item">
+      <div class="action-mark">{{NN}}</div>
+      <div><span class="do">{{Le mouvement en une phrase.}}</span><p>{{Pourquoi + exactement comment, relié à un enseignement.}}</p></div>
+    </div>
+  </section>
+
+  <!-- ============ 04b GUIDE : CE QUE TU PEUX AFFIRMER (sûr / réserve / éviter) ============ -->
+  <section class="section">
+    <div class="section-num">04b</div>
+    <h2><span class="bar"></span>Ce que tu peux affirmer sans risque</h2>
+    <div class="oncam">
+      <div class="oncam-col safe">
+        <h4>✓ Sûr — vérifié contre source primaire</h4>
+        <ul><li>{{Affirmations confirmées par des sources officielles/primaires, sûres à énoncer telles quelles.}}</li></ul>
+      </div>
+      <div class="oncam-col caveat">
+        <h4>⚠ À dire avec réserve</h4>
+        <ul><li>{{Affirmations qui demandent une attribution ou une nuance.}}</li></ul>
+      </div>
+      <div class="oncam-col avoid">
+        <h4>✕ Ne pas affirmer</h4>
+        <ul><li>{{Affirmations contestées, preprint ou invérifiables. Nomme-les pour qu'elles ne reviennent pas par la fenêtre.}}</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 05 LA QUESTION DE FRONTIÈRE ============ -->
+  <section class="section">
+    <div class="section-num">05</div>
+    <h2><span class="bar"></span>La question de frontière</h2>
+    <div class="frontier">
+      <div class="q">{{La seule question qui changerait tout si elle était résolue.}}</div>
+      <p>{{Pourquoi elle compte : ce qu'elle menace, pourquoi aucun angle ne l'a traitée, ce que sa réponse débloque.}}</p>
+    </div>
+  </section>
+
+  <!-- ============ RÉFÉRENCES avec statut de vérification ============ -->
+  <div class="refs">
+    <h3>Base de preuves · statut de vérification</h3>
+    <ul>
+      <!-- RÉPÉTER par citation. Classe vstat : ok (confirmé) | part (corrigé/partiel) | weak (rétrogradé/preprint/contesté). -->
+      <li><span class="vstat {{ok|part|weak}}">{{Confirmé|Corrigé|Contesté|Rétrogradé}}</span> {{Citation complète : auteurs, année, titre, source, le chiffre clé, et toute limite trouvée pendant la vérif.}} <a href="{{PRIMARY_URL}}">{{domaine}}</a></li>
+    </ul>
+  </div>
+
+  <div class="footer">Storm Recherche v2 · {{N}}/{{N}} citations vérifiées indépendamment contre sources primaires, {{DATE}} · {{X}} inventée(s), {{Y}} corrigée(s), {{Z}} rétrogradée(s) · Fiabilité = qualité de preuve, pas confiance de l'auteur</div>
+
+  </div>
+</div>
+</body>
+</html>
