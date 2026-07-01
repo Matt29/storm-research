@@ -1,4 +1,4 @@
-# Storm Reasearch
+# Storm Research
 
 A self-contained Claude Code skill that turns one topic into a verified, multi-perspective HTML research briefing. It simulates five expert lenses (practitioner, academic, skeptic, economist, historian), maps where they contradict each other, synthesizes everything into a single HTML report, then adversarially peer-reviews its own output and checks every citation against its primary source before delivering.
 
